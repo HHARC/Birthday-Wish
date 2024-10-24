@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffecd2);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      .container {
+        text-align: center;
+        position: relative;
+      }
+      h1 {
+        font-size: 4rem;
+        color: #050505;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        animation: bounce 2s infinite;
+      }
+      .cake {
+        font-size: 8rem;
+        animation: rotate 10s linear infinite;
+        cursor: pointer; /* Makes the cake clickable */
+      }
+      .message {
+        font-size: 1.5rem;
+        color: #030303;
+        margin-top: 20px;
+        opacity: 0;
+        animation: fadeIn 2s forwards 1s;
+      }
+      .balloon {
+        font-size: 2rem;
+        position: absolute;
+        animation: float 6s ease-in-out infinite,
+          scale 1s ease-in-out infinite alternate;
+      }
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f0f0f0;
+        animation: confetti 5s ease-in-out infinite, rotate 1s linear infinite;
+      }
+      .book {
+        display: none; /* Initially hidden */
+        font-size: 5rem;
+        animation: appear 1s forwards; /* Animation for appearing */
+      }
+      @keyframes appear {
+        from {
+          opacity: 0;
+          transform: scale(0);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-30px);
+        }
+        60% {
+          transform: translateY(-15px);
+        }
+      }
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      @keyframes confetti {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+        }
+      }
+      @keyframes scale {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Happy Birthday Ayesha Jahangir</h1>
+      <div class="cake" onclick="showBook()">🎂</div>
+      <p class="message">You are the Best Bro :) Balka Perfect hu</p>
+      <div class="book" id="book">
+        📖 The Syndicator by RuNyx you will Got it ;)
+      </div>
+    </div>
+
+    <script>
+      function createBalloon() {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.textContent = "🎈";
+        balloon.style.left = Math.random() * window.innerWidth + "px";
+        balloon.style.animationDuration = Math.random() * 3 + 3 + "s";
+        document.body.appendChild(balloon);
+
+        setTimeout(() => {
+          balloon.remove();
+        }, 6000);
+      }
+
+      function createConfetti() {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.backgroundColor = `hsl(${
+          Math.random() * 360
+        }, 100%, 50%)`;
+        confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+
+      function showBook() {
+        const book = document.getElementById("book");
+        book.style.display = "block"; // Show the book
+        book.style.animation = "appear 1s forwards"; // Trigger the animation
+      }
+
+      setInterval(createBalloon, 300);
+      setInterval(createConfetti, 50);
+    </script>
+  </body>
+</html>
